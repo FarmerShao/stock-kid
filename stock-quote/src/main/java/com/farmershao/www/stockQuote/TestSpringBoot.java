@@ -1,4 +1,4 @@
-package com.farmershao.com.quote;
+package com.farmershao.www.stockQuote;
 
 
 import org.springframework.boot.SpringApplication;
