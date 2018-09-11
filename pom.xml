@@ -11,6 +11,7 @@
 
     <modules>
         <module>stock-quote</module>
+        <module>stock-member</module>
     </modules>
 
     <!-- 配置 -->
@@ -22,6 +23,8 @@
         <spring.version>4.3.18.RELEASE</spring.version>
         <slf4j.version>1.7.21</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
+        <druid.version>1.1.10</druid.version>
+        <mysql.version>5.1.39</mysql.version>
     </properties>
 
     <dependencyManagement>
@@ -110,6 +113,18 @@
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
+            </dependency>
+            <!-- Druid连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- mysql连接驱动 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
             </dependency>
 
         </dependencies>

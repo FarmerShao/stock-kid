@@ -1,0 +1,32 @@
+server:
+  address: localhost
+  port: 8080
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.23.11:3306/test?characterEncoding=utf-8
+    username: root
+    password: root@sg
+    driver-class-name: com.mysql.jdbc.Driver
+    #druid 配置
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    #监控统计用的filter:stat;日志用的filter:log4j;防御sql注入的filter:wall
+    filters: stat,wall,log4j
+    testWhileIdle: true
+    testOnBorrow: false
+    #申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+    testOnReturn: false
+    #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    #配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    #用来检测连接是否有效的sql，要求是一个查询语句。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会其作用。
+    validationQuery: SELECT 1 FROM DUAL
+    # 通过connectProperties属性来打开mergeSql功能，慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  jpa:
+    database: mysql
+    show-sql: false

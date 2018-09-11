@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class TestSpringBoot {
 
-
     @RequestMapping("/")
     String home() { return "Hello World!"; }
 

@@ -1,0 +1,11 @@
+server:
+  address: http://localhost
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.23.11/test?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root@sg
+    driver-class-name: 
+---
+
