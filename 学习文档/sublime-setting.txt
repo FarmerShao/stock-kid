@@ -1,0 +1,14 @@
+sublime setting:
+	{
+		"color_scheme": "Monokai.sublime-color-scheme",
+		"ignored_packages":
+		[
+			"Vintage"
+		],
+		"theme": "Default.sublime-theme"
+	}
+
+Markdown preview setting:
+	{ 
+		"enable_autoreload": true
+	}
