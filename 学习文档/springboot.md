@@ -35,15 +35,37 @@
 
 ## 二、基本注解
 + \@Configuration 注解：Spring boot 的Java-base configuration的核心注解，定义当前类为配置类
+
 + \@ComponentScan 注解：启动自动扫描功能，包含@Configuration注解的类也会被自动扫描
+
 + \@EnableAutoConfiguration 注解: 启动springboot的自动配置功能; 
 	+ Class<?>[] exclude() : 排除特定的配置类; 
 	+ String[] excludeName(): 排除特定的配置类，通过类的全限定名
-+ \@ SpringBootApplication 注解: 效果等同于使用了：\@EnableAutoConfiguration、\@Configuration、\@ComponentScan 三种注解的默认配置
+
++ \@SpringBootApplication 注解: 效果等同于使用了：\@EnableAutoConfiguration、\@Configuration、\@ComponentScan 三种注解的默认配置
+
 + \@Import 注解: 导入特定的@Configuration 类
+
 + \@ImportResource 注解: 导入指定的XML resource文件 
 
++ \@PropertySource 注解： 加载指定配置文件，加在\@Configuration 注解的类上 （但是无法加载YAML文件）
+
 ## 三、配置文件
+### 1. Application property 文件
+SpringApplication 会自动加载以下位置 application.properties/.yml 文件的配置，然后将这些配置项加入到Spring 的 Environment 中：
+
+1. 当前路径下的/config 包中
+
+2. 当前路径
+
+3. classpath 下的/config 包中
+
+4. classpath 根目录
+
+`
+注： 若在上述目录均包含 application.properties/.yml 文件，全部都会被加载入 Environment 中；
+`
+
 ### 1. 使用 YAML 代替 Properties 配置文件
 Spring 框架中有2个class 支持加载YAML文档，YamlPropertiesFactoryBean 可以将 YAML 加载为 Properties；YamlMapFactoryBean 可以将 YAML 文档加载为一个 Map.
 
@@ -78,11 +100,13 @@ my.servers[0]=dev.bar.com
 my.servers[1]=foo.bar.com
 ```
 
-### 1. 使用 \@ConfigurationProperties 读取配置文件中自定义的配置项
+
+### 3. 使用 \@ConfigurationProperties 读取配置文件中自定义的配置项
 ```
 /**
 *	@ConfigurationProperties(prefix = "my")读取配置文件中前缀为'my' 的配置项
 *   @Component 注入到spring 容器中，这样就可以在其它类中使用 @Autowired 的形式注入
+*   注意：必须在pom 文件中引入
 */
 @ConfigurationProperties(prefix = "my")
 @Component 
@@ -109,3 +133,6 @@ my:
   sex:  man
 
 ```
+
+### 附录： [spring 默认的 YAML meta-data](!https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/htmlsingle/#configuration-metadata)
+
