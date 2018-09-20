@@ -1,4 +1,4 @@
-package com.farmershao.www.stockmember.repository.po;
+package com.farmershao.www.stockmember.dao.po;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,25 +12,31 @@ import java.util.Date;
  **/
 @Entity
 @Table(name = "stock_user")
-public class UserPO implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 20)
     private String nickname;
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 100)
     private String photo;
+
     @Column(nullable = false, name = "registry_time")
     private Date registryTime;
+
     @Column(nullable = false)
     private String mobile;
+
     @Column(name = "id_card")
     private String idCard;
+
     @Column
     private String name;
 
-    protected UserPO() {}
+    protected User() {}
 
     public String getIdCard() {
         return idCard;

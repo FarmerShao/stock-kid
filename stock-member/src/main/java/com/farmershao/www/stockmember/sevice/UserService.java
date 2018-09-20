@@ -1,7 +1,7 @@
 package com.farmershao.www.stockmember.sevice;
 
-import com.farmershao.www.stockmember.repository.UserRepository;
-import com.farmershao.www.stockmember.repository.po.UserPO;
+import com.farmershao.www.stockmember.dao.po.User;
+import com.farmershao.www.stockmember.dao.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class UserService {
 
     @Autowired private UserRepository userRepository;
 
-    public List<UserPO> findAll(){
+    public List<User> findAll(){
         return userRepository.findAll();
     }
 }

@@ -1,8 +1,7 @@
 package com.farmershao.www.stockmember.controller;
 
 import com.farmershao.www.stockmember.configuration.MyConfiguration;
-import com.farmershao.www.stockmember.configuration.TestImportConfiguration;
-import com.farmershao.www.stockmember.repository.po.UserPO;
+import com.farmershao.www.stockmember.dao.po.User;
 import com.farmershao.www.stockmember.sevice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,13 +23,12 @@ public class UserController {
 
     @Autowired private MyConfiguration myConfiguration;
 
-    @Autowired private TestImportConfiguration importConfiguration;
-
     @RequestMapping(name = "/all", method = RequestMethod.GET)
-    public List<UserPO> findAll(){
+    public List<User> findAll(){
         System.out.println(myConfiguration.getNames());
-        System.out.println(importConfiguration.getCode());
         return userService.findAll();
     }
+
+
 
 }
