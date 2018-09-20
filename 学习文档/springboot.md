@@ -52,22 +52,42 @@
 
 ## 三、配置文件
 ### 1. Application property 文件
-SpringApplication 会自动加载以下位置 application.properties/.yml 文件的配置，然后将这些配置项加入到Spring 的 Environment 中：
+SpringApplication 会自动加载以下位置 application.properties或者application.yml 文件的配置，然后将这些配置项加入到Spring 的 Environment 中：
 
 1. 当前路径下的/config 包中
-
 2. 当前路径
-
 3. classpath 下的/config 包中
-
 4. classpath 根目录
 
 `
 注： 若在上述目录均包含 application.properties/.yml 文件，全部都会被加载入 Environment 中；
 `
 
-### 1. 使用 YAML 代替 Properties 配置文件
+### 2. 加载 properties 配置文件
+```
+/**
+* 通过 @PropertySource、@Configuration、@Value 来加载 properties 中的配置
+*/
+@PropertySource("classpath:config/my-config.properties")
+@Configuration
+public class TestImportConfiguration {
+
+    @Value("${test.import.code}")
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+}
+```
+
+### 3. 使用 YAML 代替 Properties 配置文件
 Spring 框架中有2个class 支持加载YAML文档，YamlPropertiesFactoryBean 可以将 YAML 加载为 Properties；YamlMapFactoryBean 可以将 YAML 文档加载为一个 Map.
+（暂时还不知道如何加载除application.yml之外的YAML文件）
 
 YAML 文档样例:
 ```
@@ -100,9 +120,20 @@ my.servers[0]=dev.bar.com
 my.servers[1]=foo.bar.com
 ```
 
-
-### 3. 使用 \@ConfigurationProperties 读取配置文件中自定义的配置项
+### 4. 使用 \@ConfigurationProperties 读取配置文件中自定义的配置项
 ```
+/**
+ *	yaml 配置文件中的配置：
+ *	其中names 是
+ */
+my:
+  names:
+      - shaoyu
+      - sunshuangshuang
+  age:  18
+  sex:  man
+
+
 /**
 *	@ConfigurationProperties(prefix = "my")读取配置文件中前缀为'my' 的配置项
 *   @Component 注入到spring 容器中，这样就可以在其它类中使用 @Autowired 的形式注入
@@ -121,18 +152,56 @@ public class MyConfiguration {
     //getters and setters
 }
 
-/**
- *	yaml 配置文件中的配置：
- *	其中names 是
- */
-my:
-  names:
-      - shaoyu
-      - sunshuangshuang
-  age:  18
-  sex:  man
-
 ```
 
+### 5. 多环境配置文件（YAML）
+在平时，我们经常会碰到测试环境一套配置，生产环境又是另外一套配置，那如何在不同的环境间切换环境配置呢？
+
+1. 配置测试环境配置文件(dev): 在application.yml 同一目录下创建 application-dev.yml 
+2. 配置生产环境配置文件(master): 在application.yml 同一目录下创建 application-master.yml 
+3. 激活对应的配置文件：在application.yml中配置
+
+```
+spring:
+	profiles:
+		active: dev
+```
 ### 附录： [spring 默认的 YAML meta-data](!https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/htmlsingle/#configuration-metadata)
+
+
+## Bean 注入Spring 容器
+通过\@Configuration & \@Bean 来实现传统Spring 项目中的 <bean\>的对象注入
+
+```
+** 
+ * DruidConfiguration ：druid的监控配置
+ **/
+@Configuration
+public class DruidConfiguration {
+
+    /**
+     * 配置监控服务器
+     *
+     * @return 返回监控注册的servlet对象
+     */
+    @Bean
+    public ServletRegistrationBean statViewServlet(){
+        //设置servlet 注册实体
+        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
+        //设置ip白名单
+        bean.addInitParameter("allow", "127.0.0.1");
+        //设置ip黑名单， deny优先级大于allow
+        bean.addInitParameter("deny", "192.168.10.55");
+        //设置控制台管理用户
+        bean.addInitParameter("loginUsername", "druid");
+        bean.addInitParameter("loginPassword", "123456");
+        //是否可以重置数据
+        bean.addInitParameter("resetEnable", "false");
+        return bean;
+    }
+ }
+```
+
+
+
 
