@@ -16,12 +16,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
      * @param id
      * @return
      */
-    User find(long id);
+    User findById(long id);
 
-    /**
-     * 插入新用户
-     * @param user
-     * @return
-     */
-    int insert(User user);
 }
