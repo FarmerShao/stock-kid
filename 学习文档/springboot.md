@@ -169,7 +169,7 @@ spring:
 ### 附录： [spring 默认的 YAML meta-data](!https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/htmlsingle/#configuration-metadata)
 
 
-## Bean 注入Spring 容器
+## 三、Bean 注入Spring 容器
 通过\@Configuration & \@Bean 来实现传统Spring 项目中的 <bean\>的对象注入
 
 ```
@@ -202,6 +202,32 @@ public class DruidConfiguration {
  }
 ```
 
+## 四、Spring MVC 
+### 1. 自定义 HttpMessageConverters
+在 Spring MVC 中是通过HttpMessageConverter 接口将 HTTP的请求信息和响应信息转换为对应的格式信息。
+如果需要添加或者自定义 converters ，可以使用 Spring Boot的 HttpMessageConverters 类：
+```
+@Configuration
+public class MyConfiguration {
 
+    @Bean
+    public HttpMessageConverters customConverters() {
+        HttpMessageConverter<?> additional = ...
+        HttpMessageConverter<?> another = ...
+        return new HttpMessageConverters(additional, another);
+    }
 
+}
+```
+
+### 2. 静态Content
+Spring Boot 会默认加载下列目录下的静态资源：
+```
+1: /static
+2: /public
+3: /resources
+3: /META-INF/resources
+注： 上面的 resources 不是项目结构中的 resources 目录，而是在项目结构下的 resources 目录下，再新建一个 resources 目录。
+```
+若在上述目录下存在 index.html 文件，则这个index.html 会自动成为项目的 home page。
 
