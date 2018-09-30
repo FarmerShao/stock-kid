@@ -1,7 +1,7 @@
 package com.farmershao.www.stockmember.controller;
 
 import com.farmershao.www.stockmember.configuration.MyConfiguration;
-import com.farmershao.www.stockmember.dao.po.User;
+import com.farmershao.www.stockmember.entity.po.User;
 import com.farmershao.www.stockmember.sevice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

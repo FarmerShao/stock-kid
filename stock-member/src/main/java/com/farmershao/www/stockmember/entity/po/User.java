@@ -1,4 +1,4 @@
-package com.farmershao.www.stockmember.dao.po;
+package com.farmershao.www.stockmember.entity.po;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +15,7 @@ import java.util.Date;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue()
     private Long id;
 
     @Column(nullable = false, length = 20)

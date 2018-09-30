@@ -1,6 +1,7 @@
 package com.farmershao.www.stockmember.dao.repository;
 
-import com.farmershao.www.stockmember.dao.po.User;
+
+import com.farmershao.www.stockmember.entity.po.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
