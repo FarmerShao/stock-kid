@@ -24,5 +24,30 @@ finalize 还会掩盖资源回收时的出错信息。
 
 ### Java 对 finalize 的替换方案--Cleaner
 
+Cleaner 的实现利用了幻想引用。每个Cleaner的操作都是独立的，它有自己的运行线程，所以可以避免意外死锁等问题。
 
+```
+public class CleaningExample implements AutoCloseable {
+        // A cleaner, preferably one shared within a library
+        private static final Cleaner cleaner = <cleaner>;
+        static class State implements Runnable { 
+            State(...) {
+                // initialize State needed for cleaning action
+            }
+            public void run() {
+                // cleanup action accessing State, executed at most once
+            }
+        }
+        private final State;
+        private final Cleaner.Cleanable cleanable
+        public CleaningExample() {
+            this.state = new State(...);
+            this.cleanable = cleaner.register(this, state);
+        }
+        public void close() {
+            cleanable.clean();
+        }
+    }
+
+```
 
