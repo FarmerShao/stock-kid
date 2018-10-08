@@ -20,8 +20,11 @@ public class UserController {
 
     @Autowired private UserService userService;
 
+    @Autowired private RedisTemplate<String, Object> redisTemplate;
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> findAll(){
+        System.out.println(redisTemplate.opsForValue().get("key1"));
         return userService.findAll();
     }
 
