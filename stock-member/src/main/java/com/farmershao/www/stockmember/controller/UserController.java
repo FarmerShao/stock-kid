@@ -3,6 +3,7 @@ package com.farmershao.www.stockmember.controller;
 import com.farmershao.www.stockmember.entity.po.User;
 import com.farmershao.www.stockmember.sevice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
