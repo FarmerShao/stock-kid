@@ -36,7 +36,7 @@ public class User implements Serializable {
     @Column
     private String name;
 
-    protected User() {}
+    public User() {}
 
     public String getIdCard() {
         return idCard;
