@@ -76,7 +76,7 @@ FixApiEx.h
 
 ### 2.2 执行 swig 命令
 ```
-swig.exe -c++ -java -package com.fix.fixtraderapi -outdir src -o fixtraderapi_wrap.cpp -I ../ ixtraderapi.i
+swig.exe -c++ -java -package com.fix.fixtraderapi -outdir src -o fixtraderapi_wrap.cpp fixtraderapi.i
 ```
 
 1. swig.exe：执行 swig 命令
