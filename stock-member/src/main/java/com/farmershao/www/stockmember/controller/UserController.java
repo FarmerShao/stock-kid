@@ -21,8 +21,6 @@ public class UserController {
 
     @Autowired private UserService userService;
 
-    @Resource(name = "redisTemplate") private RedisTemplate<Object, Object> redisTemplate;
-
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> findAll(){
         return userService.findAll();
@@ -30,12 +28,12 @@ public class UserController {
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public User find(@PathVariable Long userId){
-        User user = (User)redisTemplate.opsForValue().get("user" + userId);
-        if (user == null) {
-            user = userService.find(userId);
-            redisTemplate.opsForValue().set("user" + userId, user);
-        }
-        return user;
+//        User user = (User)redisTemplate.opsForValue().get("user" + userId);
+//        if (user == null) {
+//            user = userService.find(userId);
+//            redisTemplate.opsForValue().set("user" + userId, user);
+//        }
+        return userService.find(userId);
     }
 
 }

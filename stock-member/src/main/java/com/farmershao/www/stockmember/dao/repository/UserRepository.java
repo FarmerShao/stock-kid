@@ -3,7 +3,6 @@ package com.farmershao.www.stockmember.dao.repository;
 
 import com.farmershao.www.stockmember.entity.po.User;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -21,7 +20,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
      * @param id
      * @return
      */
-    @Cacheable(key="#p0")
+    @Cacheable(key ="#p0")
     User findById(long id);
 
 }
