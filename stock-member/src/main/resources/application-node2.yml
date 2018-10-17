@@ -1,6 +1,6 @@
 server:
   address: localhost
-  port: 8080
+  port: 8082
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -54,5 +54,5 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8011/eureka/
+      defaultZone: http://peer1:8011/eureka/
     fetch-registry: false
