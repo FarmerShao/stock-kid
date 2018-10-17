@@ -1,16 +1,22 @@
 server:
-  port: 1111
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    fetch-registry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-    register-with-eureka: false
+  port: 8011
 spring:
   application:
     name: eureka-server
 management:
   security:
     enabled: true
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 60000
