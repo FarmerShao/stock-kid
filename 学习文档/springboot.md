@@ -50,6 +50,30 @@
 
 + \@PropertySource 注解： 加载指定配置文件，加在\@Configuration 注解的类上 （但是无法加载YAML文件）
 
+### 配置的进阶注解
+今天在研究如何配置Redis时候，突然发现Spring Boot下一个神奇的包：spring-boot-autoconfigure 。
+从名字上就可以看出来它的功能，没错就是自动注入Configure，在这个包里面的Configuran 都会在项目启动时自动配置，其中就有我需要的redis的Configuration: RedisAutoConfiguration。
+从阅读源码中我发现了很多有趣的注解可以配置@Configuration 使用。
+
++ \@Condition （TYPE）: 约束条件：达到指定的 Condition接口实现类的条件
++ \@ConditionalOnMissingBean （TYPE & METHOD）：  约束条件：指定的bean 还未被注入到容器中
++ \@ConditionalOnBean （TYPE & METHOD）：  约束条件：指定的bean 必须已经被注入容器中
++ \@EnableConfigurationProperties （TYPE）：支持将指定的 @ConfigurationProperties 类注入到@Bean 的方法参数上，或者是类的构造函数上。
++ \@AutoConfigureAfter （TYPE）：在指定的@Configuration 的类执行后，再执行当前类
+
+```
+@Configuration
+@EnableConfigurationProperties(RedisProperties.class)
+public class RedisTestConfig {
+
+    @Bean
+    public User getUser(RedisProperties redisProperties){
+        System.out.println(redisProperties.getHost());
+        return new User();
+    }
+}
+```
+
 ## 三、配置文件
 ### 1. Application property 文件
 SpringApplication 会自动加载以下位置 application.properties或者application.yml 文件的配置，然后将这些配置项加入到Spring 的 Environment 中：

@@ -8,14 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * DruidConfiguration ：druid的监控配置
+ * DruidConfig ：druid的监控配置
  *
  *
  * @author Shao Yu
  * @since 2018/9/11 16:59
  **/
 @Configuration
-public class DruidConfiguration {
+public class DruidConfig {
 
     /**
      * 配置监控服务器
