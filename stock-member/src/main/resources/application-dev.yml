@@ -59,3 +59,6 @@ my:
       - sunshuangshuang
     age:  18
     sex:  man
+management:
+  security:
+    enabled: false

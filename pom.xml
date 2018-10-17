@@ -12,6 +12,7 @@
     <modules>
         <module>stock-quote</module>
         <module>stock-member</module>
+        <module>stock-eureka-server</module>
     </modules>
 
     <!-- 配置 -->
@@ -29,6 +30,14 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Spring cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Camden.SR6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!-- Spring boot 版本管理-->
             <dependency>
