@@ -1,0 +1,11 @@
+server:
+  port: 8022
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer2:8012/eureka/
+    fetch-registry: true
+spring:
+  application:
+    name: stoke-quote
+
