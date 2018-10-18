@@ -9,8 +9,13 @@ management:
 eureka:
   instance:
     hostname: peer1
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://peer2:8012/eureka/
+  server:
+      # 关闭Euraka的自我保护机制
+      enable-self-preservation: false

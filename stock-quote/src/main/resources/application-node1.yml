@@ -5,6 +5,13 @@ eureka:
     service-url:
       defaultZone: http://peer1:8011/eureka/
     fetch-registry: true
+  instance:
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
+  server:
+    # 关闭Euraka的自我保护机制
+    enable-self-preservation: false
 spring:
   application:
     name: stoke-quote
+
