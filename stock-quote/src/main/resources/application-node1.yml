@@ -8,10 +8,13 @@ eureka:
   instance:
     lease-expiration-duration-in-seconds: 90
     lease-renewal-interval-in-seconds: 30
+    hostname: localhost
   server:
     # 关闭Euraka的自我保护机制
     enable-self-preservation: false
 spring:
   application:
     name: stoke-quote
-
+management:
+  security:
+    enabled: false
