@@ -51,18 +51,18 @@ spring:
     maxWaitMillis: 1000
   application:
     name: stock-member
-eureka:
-  client:
-    service-url:
-      defaultZone: http://peer1:8011/eureka/
-    fetch-registry: true
-  instance:
-      hostname: localhost
-      lease-expiration-duration-in-seconds: 90
-      lease-renewal-interval-in-seconds: 30
-  server:
-      # 关闭Euraka的自我保护机制
-      enable-self-preservation: false
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://peer1:8011/eureka/
+#    fetch-registry: true
+#  instance:
+#      hostname: localhost
+#      lease-expiration-duration-in-seconds: 90
+#      lease-renewal-interval-in-seconds: 30
+#  server:
+#      # 关闭Euraka的自我保护机制
+#      enable-self-preservation: false
 management:
   security:
     enabled: false
